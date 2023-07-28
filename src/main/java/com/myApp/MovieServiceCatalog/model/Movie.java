@@ -5,20 +5,27 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "Movie")
 public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Integer movieId;
+    private Long movieId;
 
     @Column
     private String movieName;
 
-    @Column
+    @ManyToMany(mappedBy = "movies")
     private List<User> users;
 
-    public Integer getMovieId() {
+    public Movie(Long movieId, String movieName, List<User> users) {
+        this.movieId = movieId;
+        this.movieName = movieName;
+        this.users = users;
+    }
+
+    public Long getMovieId() {
         return movieId;
     }
 

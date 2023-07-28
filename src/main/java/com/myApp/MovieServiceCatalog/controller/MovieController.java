@@ -22,8 +22,13 @@ public class MovieController {
     private UserServiceImpl userService;
 
     @GetMapping(path = "/movies/user/{userId}")
-    public List<Movie> getMoviesByUserId(@PathVariable("userId") long id) {
-        return userService.getMoviesByUserId(id);
+    public ResponseEntity<List<Movie>> getMoviesByUserId(@PathVariable("userId") long id) {
+        Optional<List<Movie>> movies = userService.getMoviesByUserId(id);
+        if (movies.isPresent()) {
+            return new ResponseEntity<>(movies.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(path = "/movies/movie/{movieId}")

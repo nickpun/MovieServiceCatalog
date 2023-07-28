@@ -5,20 +5,32 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "User")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Integer userId;
+    private Long userId;
 
     @Column
     private String fullName;
 
-    @Column
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "User_Movie",
+            joinColumns = { @JoinColumn(name = "userId") },
+            inverseJoinColumns = { @JoinColumn(name = "movieId") }
+    )
     private List<Movie> movies;
 
-    public Integer getUserID() {
+    public User(Long userId, String fullName, List<Movie> movies) {
+        this.userId = userId;
+        this.fullName = fullName;
+        this.movies = movies;
+    }
+
+    public Long getUserID() {
         return userId;
     }
 
