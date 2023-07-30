@@ -1,6 +1,6 @@
 package com.myApp.MovieServiceCatalog.service;
 
-import com.myApp.MovieServiceCatalog.model.Movie;
+import com.myApp.MovieServiceCatalog.entity.Movie;
 
 import java.util.Optional;
 

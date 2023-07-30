@@ -1,4 +1,4 @@
-package com.myApp.MovieServiceCatalog.model;
+package com.myApp.MovieServiceCatalog.entity;
 
 import jakarta.persistence.*;
 
@@ -23,6 +23,14 @@ public class User {
             inverseJoinColumns = { @JoinColumn(name = "movieId") }
     )
     private List<Movie> movies;
+
+    public User() {
+    }
+
+    public User(Long userId, String fullName) {
+        this.userId = userId;
+        this.fullName = fullName;
+    }
 
     public User(Long userId, String fullName, List<Movie> movies) {
         this.userId = userId;

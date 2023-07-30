@@ -1,6 +1,6 @@
 package com.myApp.MovieServiceCatalog.controller;
 
-import com.myApp.MovieServiceCatalog.model.Movie;
+import com.myApp.MovieServiceCatalog.entity.Movie;
 import com.myApp.MovieServiceCatalog.service.Impl.MovieServiceImpl;
 import com.myApp.MovieServiceCatalog.service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

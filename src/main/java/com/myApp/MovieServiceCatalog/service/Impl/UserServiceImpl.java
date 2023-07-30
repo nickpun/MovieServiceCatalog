@@ -1,13 +1,12 @@
 package com.myApp.MovieServiceCatalog.service.Impl;
 
-import com.myApp.MovieServiceCatalog.dao.UserDao;
-import com.myApp.MovieServiceCatalog.model.Movie;
-import com.myApp.MovieServiceCatalog.model.User;
+import com.myApp.MovieServiceCatalog.repository.UserRepository;
+import com.myApp.MovieServiceCatalog.entity.Movie;
+import com.myApp.MovieServiceCatalog.entity.User;
 import com.myApp.MovieServiceCatalog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,11 +14,11 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     public Optional<List<Movie>> getMoviesByUserId(long id) {
         Optional<List<Movie>> opMovies = Optional.empty();
-        Optional<User> opUser = userDao.findById(id);
+        Optional<User> opUser = userRepository.findById(id);
         if (opUser.isPresent()) {
             opMovies = Optional.of(opUser.get().getMovies());
         }
@@ -27,6 +26,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public void addUser(User user) {
-        userDao.save(user);
+        userRepository.save(user);
     }
 }
